@@ -35,7 +35,7 @@ export default function ParticleNetwork() {
             }
 
             draw() {
-                ctx.fillStyle = 'rgba(56, 189, 248, 0.5)'; // Cyan-400
+                ctx.fillStyle = 'rgba(255, 127, 80, 0.5)'; // Peach/Coral
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -61,7 +61,7 @@ export default function ParticleNetwork() {
 
                     if (distance < 150) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(56, 189, 248, ${0.2 - distance / 150 * 0.2})`;
+                        ctx.strokeStyle = `rgba(255, 127, 80, ${0.2 - distance / 150 * 0.2})`;
                         ctx.lineWidth = 1;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
@@ -91,7 +91,7 @@ export default function ParticleNetwork() {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full bg-slate-950"
+            className="absolute inset-0 w-full h-full bg-background"
         />
     );
 }

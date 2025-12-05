@@ -34,21 +34,21 @@ const features = [
         title: "MISRA C Compliance",
         description: "Automated static analysis gates before every merge.",
         colSpan: "col-span-1 md:col-span-2",
-        bg: "bg-orange-500/10",
-        border: "border-orange-500/20",
-        text: "text-orange-400"
+        bg: "bg-primary/10",
+        border: "border-primary/20",
+        text: "text-primary"
     }
 ];
 
 export default function ServicesGrid() {
     return (
-        <section id="features" className="py-24 bg-slate-950 relative">
+        <section id="features" className="py-24 bg-background relative">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        Engineered for <span className="text-blue-500">Automotive Excellence</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                        Engineered for <span className="text-primary">Automotive Excellence</span>
                     </h2>
-                    <p className="text-slate-400 max-w-2xl mx-auto">
+                    <p className="text-muted-foreground max-w-2xl mx-auto">
                         Replace fragile scripts with a robust, enterprise-grade CI/CD platform built for the complexities of modern vehicle software.
                     </p>
                 </div>
@@ -66,8 +66,8 @@ export default function ServicesGrid() {
                             <div className={`w-12 h-12 rounded-lg ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                 <feature.icon className={`w-6 h-6 ${feature.text}`} />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                            <p className="text-slate-400 leading-relaxed">
+                            <h3 className="text-xl font-bold text-foreground mb-3">{feature.title}</h3>
+                            <p className="text-muted-foreground leading-relaxed">
                                 {feature.description}
                             </p>
                         </div>
