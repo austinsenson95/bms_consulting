@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './ui/Section';
+import Section from '../ui/Section';
 import { Bike, Factory, Zap, Truck } from 'lucide-react';
 
 const cases = [

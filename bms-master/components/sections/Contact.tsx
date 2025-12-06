@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import Section from './ui/Section';
-import Button from './ui/Button';
+import Section from '../ui/Section';
+import Button from '../ui/Button';
 import { Send, Check } from 'lucide-react';
 
 export default function Contact() {

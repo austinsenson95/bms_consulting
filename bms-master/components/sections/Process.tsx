@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './ui/Section';
+import Section from '../ui/Section';
 
 const steps = [
     { title: "Discovery & Requirements", desc: "We map your vehicle/storage specs to BMS requirements." },

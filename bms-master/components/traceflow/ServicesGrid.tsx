@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, GitBranch, Cloud, Shield, Zap, Activity } from 'lucide-react';
+import { Cpu, GitBranch, Cloud, Shield } from 'lucide-react';
 
 const features = [
     {

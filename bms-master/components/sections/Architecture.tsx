@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './ui/Section';
+import Section from '../ui/Section';
 
 export default function Architecture() {
     return (

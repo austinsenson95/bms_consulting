@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Download, Cpu, Zap, Activity, BatteryCharging } from 'lucide-react';
-import Button from './ui/Button';
+import Button from '../ui/Button';
 
 export default function Hero() {
     return (

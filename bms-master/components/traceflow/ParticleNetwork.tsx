@@ -1,13 +1,19 @@
+"use client";
+
 import React, { useEffect, useRef } from 'react';
 
 export default function ParticleNetwork() {
-    const canvasRef = useRef(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
+        if (!canvas) return;
+
         const ctx = canvas.getContext('2d');
-        let animationFrameId;
-        let particles = [];
+        if (!ctx) return;
+
+        let animationFrameId: number;
+        let particles: Particle[] = [];
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
@@ -18,9 +24,15 @@ export default function ParticleNetwork() {
         resizeCanvas();
 
         class Particle {
+            x: number;
+            y: number;
+            vx: number;
+            vy: number;
+            size: number;
+
             constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
+                this.x = Math.random() * canvas!.width;
+                this.y = Math.random() * canvas!.height;
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
                 this.size = Math.random() * 2 + 1;
@@ -30,11 +42,12 @@ export default function ParticleNetwork() {
                 this.x += this.vx;
                 this.y += this.vy;
 
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                if (this.x < 0 || this.x > canvas!.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas!.height) this.vy *= -1;
             }
 
             draw() {
+                if (!ctx) return;
                 ctx.fillStyle = 'rgba(255, 127, 80, 0.5)'; // Peach/Coral
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);

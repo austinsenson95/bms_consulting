@@ -1,13 +1,13 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Architecture from "@/components/Architecture";
-import Process from "@/components/Process";
-import UseCases from "@/components/UseCases";
-import TechStack from "@/components/TechStack";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/Hero";
+import Services from "@/components/sections/Services";
+import Architecture from "@/components/sections/Architecture";
+import Process from "@/components/sections/Process";
+import UseCases from "@/components/sections/UseCases";
+import TechStack from "@/components/sections/TechStack";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
     return (

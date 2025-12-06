@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, BatteryCharging } from 'lucide-react';
-import Button from './ui/Button';
+import Button from '../ui/Button';
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -18,11 +18,12 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: 'Services', href: '#services' },
-        { name: 'Architecture', href: '#architecture' },
-        { name: 'Process', href: '#process' },
-        { name: 'Use Cases', href: '#use-cases' },
-        { name: 'Tech Stack', href: '#tech-stack' },
+        { name: 'Services', href: '/#services' },
+        { name: 'TraceFlow', href: '/traceflow' },
+        { name: 'Architecture', href: '/#architecture' },
+        { name: 'Process', href: '/#process' },
+        { name: 'Use Cases', href: '/#use-cases' },
+        { name: 'Tech Stack', href: '/#tech-stack' },
     ];
 
     return (

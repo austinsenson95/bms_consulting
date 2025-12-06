@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './ui/Section';
+import Section from '../ui/Section';
 import { Layers, Wrench, ShieldCheck, BrainCircuit } from 'lucide-react';
 
 const services = [

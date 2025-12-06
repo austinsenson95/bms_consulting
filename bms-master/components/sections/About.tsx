@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './ui/Section';
+import Section from '../ui/Section';
 import { CheckCircle2 } from 'lucide-react';
 
 export default function About() {

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import {
     Cpu,
@@ -17,128 +19,43 @@ import {
     Settings,
     Database,
     Cloud,
-    RefreshCw,
     Download,
     Upload,
-    Share2,
     Shield,
     HardDrive,
     Zap,
-    FileText,
     Users,
     Monitor,
-    AlertCircle,
 } from 'lucide-react';
-
-// --- Google Slides Outline Data ---
-const SLIDES_OUTLINE = [
-    {
-        slide: 1,
-        title: 'Automotive BMS Firmware CI/CD Transformation',
-        subtitle: 'Accelerating Delivery from Model-Based Design to Target Hardware',
-        content: ['Presenter Name', 'Date', 'Engineering Division'],
-    },
-    {
-        slide: 2,
-        title: 'Current Challenges',
-        content: [
-            'Manual handover between Algorithm (MBD) and Firmware teams.',
-            'Inconsistent testing: MIL passes but target code fails.',
-            'Long integration cycles due to manual code patching.',
-            'Lack of traceability from requirements to binary release.',
-        ],
-    },
-    {
-        slide: 3,
-        title: 'Vision & Objectives',
-        content: [
-            'Fully automated pipeline: Commit → Build → Test.',
-            'Single Source of Truth: GitLab CI.',
-            'Eliminate manual C-code modification.',
-            'Shift-Left: Catch bugs in MIL/SIL before HIL.',
-        ],
-    },
-    {
-        slide: 4,
-        title: 'Stakeholders & Responsibilities',
-        content: [
-            'Algorithm Team: Simulink Models, MIL/SIL Validation.',
-            'Firmware Team: Integration, HW Drivers, Toolchain.',
-            'DevOps: CI/CD Pipeline Maintenance, Cloud Runners.',
-            'Validation Team: HIL Testing, Final Sign-off.',
-        ],
-    },
-    {
-        slide: 5,
-        title: 'End-to-End Architecture',
-        content: ['(Reference \'End-to-End Flow\' Diagram)', 'Simulink -> Embedded Coder -> GitLab -> Compiler -> Target'],
-    },
-    {
-        slide: 6,
-        title: 'Algorithm CI/CD (The MBD Loop)',
-        content: [
-            'Trigger: Push to MBD Repo.',
-            'Action: Auto-run MIL vectors.',
-            'Action: Generate C Code (Embedded Coder).',
-            'Action: Run SIL (Python wrapper).',
-            'Output: Verified C-Code + Test Reports.',
-        ],
-    },
-    {
-        slide: 7,
-        title: 'Firmware Integration & Automation',
-        content: [
-            'Trigger: Submodule update in Firmware Repo.',
-            'Automation: `generatedCodeCompiler.py` patches headers/makefiles.',
-            'Build: ARM-GCC Toolchain compiles .elf/.hex.',
-            'Static Analysis: MISRA C checks.',
-        ],
-    },
-    {
-        slide: 8,
-        title: 'Release & Artifacts',
-        content: [
-            'Artifacts stored in GitLab Release Registry.',
-            'Contents: Firmware Binary (.hex), Map File (.map), MIL/SIL Report (PDF), Release Notes.',
-            'Versioning: Semantic Versioning (v1.2.3).',
-        ],
-    },
-    {
-        slide: 9,
-        title: 'System Validation (HIL)',
-        content: [
-            'Consumer: System Test Team downloads artifacts.',
-            'Action: Flash to BMS hardware.',
-            'Test: Hardware-in-Loop (HIL) automated sequences.',
-            'Feedback: Issues reported back to GitLab Issues.',
-        ],
-    },
-    {
-        slide: 10,
-        title: 'Summary & ROI',
-        content: [
-            '50% reduction in integration time.',
-            '100% traceability of binary to model version.',
-            'Higher quality releases via automated gates.',
-        ],
-    },
-];
 
 // --- Shared Components ---
 
-const TriggerBadge = ({ text }) => (
+const TriggerBadge = ({ text }: { text: string }) => (
     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] uppercase font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1 whitespace-nowrap z-20 border border-slate-600">
         <Zap size={10} className="text-yellow-400" />
         {text}
     </div>
 );
 
-const ArtifactBadge = ({ text }) => (
+const ArtifactBadge = ({ text }: { text: string }) => (
     <div className="mt-3 bg-slate-100 text-slate-600 text-[10px] font-medium px-2 py-1 rounded border border-slate-200 flex items-center gap-1 justify-center">
         <Package size={10} />
         {text}
     </div>
 );
+
+interface PipelineStepProps {
+    number?: string;
+    title: string;
+    description?: string;
+    icon: React.ElementType;
+    isLast?: boolean;
+    colorClass: string;
+    bgClass: string;
+    triggerText?: string;
+    artifactText?: string;
+    compact?: boolean;
+}
 
 const PipelineStep = ({
     number,
@@ -151,7 +68,7 @@ const PipelineStep = ({
     triggerText,
     artifactText,
     compact = false,
-}) => {
+}: PipelineStepProps) => {
     return (
         <div className={`flex flex-col md:flex-row items-center flex-1 group relative ${compact ? 'min-w-[200px]' : 'w-full md:w-auto'}`}>
             {/* Trigger Badge (Floating) */}
@@ -221,7 +138,7 @@ const PipelineStep = ({
     );
 };
 
-const SectionHeader = ({ title, color }) => (
+const SectionHeader = ({ title, color }: { title: string; color: string }) => (
     <div className="flex items-center gap-2 mb-4 px-1">
         <div className={`w-1.5 h-6 rounded-full ${color}`} />
         <h2 className="text-sm font-bold text-slate-500 uppercase tracking-widest">{title}</h2>
@@ -701,51 +618,9 @@ const ArchitectureView = () => (
     </div>
 );
 
-// --- Management Summary Component ---
-const ManagementSummary = () => (
-    <div className="mt-12 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-        <div className="flex items-center gap-2 mb-4">
-            <div className="bg-blue-600 text-white p-1.5 rounded-lg">
-                <Monitor size={20} />
-            </div>
-            <h3 className="text-lg font-bold text-slate-800">Management Summary</h3>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-4 bg-slate-50 rounded-lg border border-slate-100">
-                <div className="flex items-center gap-2 mb-2 text-slate-700 font-bold">
-                    <Zap size={16} className="text-yellow-500" /> Accelerated Feedback
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                    Transitioned from manual integration to a fully automated pipeline. Algorithm developers get MIL/SIL feedback in minutes, not days.
-                </p>
-            </div>
-
-            <div className="p-4 bg-slate-50 rounded-lg border border-slate-100">
-                <div className="flex items-center gap-2 mb-2 text-slate-700 font-bold">
-                    <Shield size={16} className="text-blue-500" /> Enhanced Quality
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                    Automated gates prevent unverified code from reaching the main branch. Every artifact is traceable back to a specific Simulink model version.
-                </p>
-            </div>
-
-            <div className="p-4 bg-slate-50 rounded-lg border border-slate-100">
-                <div className="flex items-center gap-2 mb-2 text-slate-700 font-bold">
-                    <Package size={16} className="text-green-500" /> Reliable Releases
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                    Standardized build environment (Docker) ensures "works on my machine" issues are eliminated. Releases are generated automatically as immutable artifacts.
-                </p>
-            </div>
-        </div>
-    </div>
-);
-
 // --- Main Component ---
 export default function PipelineDemo() {
     const [activeTab, setActiveTab] = useState('end-to-end');
-    const [showSlides, setShowSlides] = useState(false);
 
     const tabs = [
         { id: 'end-to-end', label: 'End-to-End Flow' },
@@ -796,13 +671,13 @@ export default function PipelineDemo() {
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
-                            onClick={() => {
-                                setActiveTab(tab.id);
-                                setShowSlides(false);
-                            }}
+                            onClick={() => setActiveTab(tab.id)}
                             className={`
-                px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-2
-                ${activeTab === tab.id && !showSlides ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}
+                px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200
+                ${activeTab === tab.id
+                                    ? 'bg-slate-800 text-white shadow-md'
+                                    : 'text-slate-500 hover:bg-slate-100 hover:text-slate-700'
+                                }
               `}
                         >
                             {tab.label}
@@ -810,41 +685,9 @@ export default function PipelineDemo() {
                     ))}
                 </div>
 
-                {/* Main Content Area */}
-                <main className="min-h-[400px]">
-                    {showSlides ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            {SLIDES_OUTLINE.map((slide) => (
-                                <div key={slide.slide} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="text-xs font-bold text-blue-600 uppercase mb-2">Slide {slide.slide}</div>
-                                    <h3 className="font-bold text-slate-900 mb-3">{slide.title}</h3>
-                                    <ul className="list-disc pl-4 space-y-1">
-                                        {slide.content.map((item, i) => (
-                                            <li key={i} className="text-sm text-slate-600">
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        renderContent()
-                    )}
-                </main>
-
-                {/* Footer/Legend Area */}
-                {!showSlides && <ManagementSummary />}
-
-                <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center text-slate-400 text-xs gap-4">
-                    <div>
-                        Showing diagram for:{' '}
-                        <span className="font-semibold text-slate-600">{tabs.find((t) => t.id === activeTab)?.label}</span>
-                    </div>
-                    <button onClick={() => setShowSlides(!showSlides)} className="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                        <FileText size={14} />
-                        {showSlides ? 'Back to Diagrams' : 'View Presentation Outline'}
-                    </button>
+                {/* Content Area */}
+                <div className="min-h-[600px]">
+                    {renderContent()}
                 </div>
             </div>
         </div>
