@@ -52,13 +52,14 @@ const config: Config = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
-                // Legacy brand colors for backward compatibility (mapped to new vars where possible or kept as static)
+                // Legacy brand colors mapped to new theme vars for safety, or removed if unused.
+                // Keeping minimal map to prevent build errors if specific shades were ref'd.
                 brand: {
-                    900: '#0f172a',
-                    950: '#F8FAFC',
-                    accent: '#0FB9B1',
-                    secondary: '#0A6C6A',
-                    highlight: '#84cc16',
+                    900: "hsl(var(--foreground))",
+                    950: "hsl(var(--background))",
+                    accent: "hsl(var(--primary))",
+                    secondary: "hsl(var(--secondary))",
+                    highlight: "hsl(var(--accent))",
                 },
             },
             borderRadius: {

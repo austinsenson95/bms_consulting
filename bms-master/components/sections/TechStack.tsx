@@ -13,10 +13,10 @@ export default function TechStack() {
     return (
         <Section id="tech-stack" darker>
             <div className="text-center mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                     Technology Stack
                 </h2>
-                <p className="text-slate-600">
+                <p className="text-muted-foreground">
                     We use modern, industry-standard tools to build reliable systems.
                 </p>
             </div>
@@ -25,7 +25,7 @@ export default function TechStack() {
                 {technologies.map((tech, idx) => (
                     <span
                         key={idx}
-                        className="px-4 py-2 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium hover:border-brand-accent/50 hover:text-brand-accent transition-colors cursor-default shadow-sm"
+                        className="px-4 py-2 rounded-full bg-card border border-border text-muted-foreground text-sm font-medium hover:border-primary/50 hover:text-primary transition-colors cursor-default shadow-sm"
                     >
                         {tech}
                     </span>

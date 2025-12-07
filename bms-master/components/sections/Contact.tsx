@@ -16,24 +16,24 @@ export default function Contact() {
     };
 
     return (
-        <Section id="contact" darker className="border-t border-slate-200 bg-slate-50">
+        <Section id="contact" darker className="border-t border-border bg-secondary/10">
             <div className="max-w-xl mx-auto text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                     Ready to Scale?
                 </h2>
-                <p className="text-slate-600">
+                <p className="text-muted-foreground">
                     Book a technical discovery call. No sales fluff, just engineering.
                 </p>
             </div>
 
             <div className="max-w-md mx-auto">
                 {status === 'success' ? (
-                    <div className="bg-brand-secondary/5 border border-brand-secondary/20 rounded-xl p-8 text-center animate-in fade-in zoom-in">
-                        <div className="w-16 h-16 bg-brand-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Check className="w-8 h-8 text-brand-secondary" />
+                    <div className="bg-primary/5 border border-primary/20 rounded-xl p-8 text-center animate-in fade-in zoom-in">
+                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Check className="w-8 h-8 text-primary" />
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-2">Message Received</h3>
-                        <p className="text-slate-600">We'll be in touch within 24 hours.</p>
+                        <h3 className="text-xl font-bold text-foreground mb-2">Message Received</h3>
+                        <p className="text-muted-foreground">We'll be in touch within 24 hours.</p>
                         <Button
                             variant="outline"
                             className="mt-6"
@@ -45,34 +45,34 @@ export default function Contact() {
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-slate-600 mb-1">Name</label>
+                            <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-1">Name</label>
                             <input
                                 type="text"
                                 id="name"
                                 required
-                                className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
+                                className="w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                                 placeholder="Jane Doe"
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-slate-600 mb-1">Work Email</label>
+                            <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-1">Work Email</label>
                             <input
                                 type="email"
                                 id="email"
                                 required
-                                className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
+                                className="w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                                 placeholder="jane@company.com"
                             />
                         </div>
 
                         <div>
-                            <label htmlFor="message" className="block text-sm font-medium text-slate-600 mb-1">Project Details</label>
+                            <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-1">Project Details</label>
                             <textarea
                                 id="message"
                                 required
                                 rows={4}
-                                className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all resize-none"
+                                className="w-full bg-card border border-border rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
                                 placeholder="Tell us about your BMS requirements..."
                             ></textarea>
                         </div>

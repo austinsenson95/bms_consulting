@@ -13,7 +13,7 @@ export default function Section({ id, className = '', children, darker = false }
     return (
         <section
             id={id}
-            className={`py-20 md:py-32 px-6 md:px-12 lg:px-24 relative overflow-hidden ${darker ? 'bg-white border-y border-slate-100' : 'bg-transparent'} ${className}`}
+            className={`py-20 md:py-32 px-6 md:px-12 lg:px-24 relative overflow-hidden ${darker ? 'bg-secondary/10 border-y border-border' : 'bg-transparent'} ${className}`}
         >
             <motion.div
                 className="max-w-7xl mx-auto relative z-10"

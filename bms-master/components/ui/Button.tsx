@@ -16,18 +16,18 @@ export default function Button({
     ...props
 }: ButtonProps) {
 
-    const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent disabled:pointer-events-none disabled:opacity-50 active:scale-95";
+    const baseStyles = "inline-flex items-center justify-center rounded-xl font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 active:scale-95";
 
     const variants = {
-        primary: "bg-brand-accent text-white hover:bg-brand-secondary shadow-md hover:shadow-lg hover:-translate-y-0.5",
-        secondary: "bg-white border border-brand-accent text-brand-accent hover:bg-brand-accent/5 hover:-translate-y-0.5 shadow-sm",
-        outline: "border border-slate-200 bg-transparent hover:bg-slate-50 text-slate-600 hover:text-slate-900",
-        ghost: "hover:bg-slate-100 text-slate-600 hover:text-slate-900",
+        primary: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 shadow-md hover:shadow-lg hover:scale-105",
+        secondary: "bg-background border border-primary text-primary hover:bg-primary/5 hover:-translate-y-0.5 shadow-sm",
+        outline: "border border-border bg-transparent hover:bg-secondary text-muted-foreground hover:text-foreground",
+        ghost: "hover:bg-secondary text-muted-foreground hover:text-foreground",
     };
 
     const sizes = {
-        sm: "h-9 px-3 text-sm",
-        md: "h-11 px-8 text-base",
+        sm: "h-9 px-4 text-sm",
+        md: "h-12 px-8 text-base",
         lg: "h-14 px-10 text-lg",
     };
 

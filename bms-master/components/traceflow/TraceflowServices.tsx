@@ -9,27 +9,27 @@ const features = [
         title: "Automated HIL",
         description: "Flash target hardware and run driving cycles automatically.",
         colSpan: "col-span-1 md:col-span-2",
-        bg: "bg-blue-500/10",
-        border: "border-blue-500/20",
-        text: "text-blue-400"
+        bg: "bg-primary/5",
+        border: "border-primary/20",
+        text: "text-primary"
     },
     {
         icon: GitBranch,
         title: "Traceability",
         description: "Link every binary back to specific Simulink model versions.",
         colSpan: "col-span-1",
-        bg: "bg-emerald-500/10",
-        border: "border-emerald-500/20",
-        text: "text-emerald-400"
+        bg: "bg-accent/10",
+        border: "border-accent/30",
+        text: "text-accent-foreground"
     },
     {
         icon: Cloud,
         title: "Cloud Runners",
         description: "Scalable build environments for massive firmware compilation.",
         colSpan: "col-span-1",
-        bg: "bg-purple-500/10",
-        border: "border-purple-500/20",
-        text: "text-purple-400"
+        bg: "bg-secondary/20",
+        border: "border-border",
+        text: "text-foreground"
     },
     {
         icon: Shield,

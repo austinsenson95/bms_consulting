@@ -9,6 +9,8 @@ export const metadata: Metadata = {
     description: "End-to-end Battery Management System solutions. From AFE drivers to Cloud AI. Production-grade firmware, safety-critical architecture, and scalable fleet intelligence.",
 };
 
+import Navbar from "@/components/layout/Navbar";
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -16,7 +18,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth">
-            <body className={`${inter.variable} font-sans antialiased bg-brand-950 text-slate-200 selection:bg-brand-accent selection:text-brand-950`}>
+            <body className={`${inter.variable} font-sans antialiased bg-background text-foreground selection:bg-primary/30 selection:text-foreground`}>
+                <Navbar />
                 {children}
             </body>
         </html>
