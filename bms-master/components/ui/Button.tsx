@@ -1,8 +1,8 @@
 import React from 'react';
-import { cn } from '@/lib/utils'; // We'll need a utility for class merging, or just do it inline for simplicity in this MVP
+import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+    variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'glow';
     size?: 'sm' | 'md' | 'lg';
     href?: string;
 }
@@ -16,22 +16,49 @@ export default function Button({
     ...props
 }: ButtonProps) {
 
-    const baseStyles = "inline-flex items-center justify-center rounded-xl font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50 active:scale-95";
+    const baseStyles = cn(
+        "inline-flex items-center justify-center font-semibold transition-all duration-300",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "disabled:pointer-events-none disabled:opacity-50",
+        "active:scale-[0.98]",
+        "rounded-lg"
+    );
 
     const variants = {
-        primary: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 shadow-md hover:shadow-lg hover:scale-105",
-        secondary: "bg-background border border-primary text-primary hover:bg-primary/5 hover:-translate-y-0.5 shadow-sm",
-        outline: "border border-border bg-transparent hover:bg-secondary text-muted-foreground hover:text-foreground",
-        ghost: "hover:bg-secondary text-muted-foreground hover:text-foreground",
+        primary: cn(
+            "bg-gradient-to-r from-primary to-cyan-400 text-primary-foreground",
+            "hover:shadow-glow hover:scale-[1.02]",
+            "border border-primary/20"
+        ),
+        secondary: cn(
+            "bg-secondary border border-border text-foreground",
+            "hover:border-primary/50 hover:bg-secondary/80",
+            "hover:shadow-glow-sm"
+        ),
+        outline: cn(
+            "border border-border bg-transparent text-muted-foreground",
+            "hover:border-primary/50 hover:text-foreground hover:bg-primary/5"
+        ),
+        ghost: cn(
+            "text-muted-foreground",
+            "hover:text-foreground hover:bg-secondary"
+        ),
+        glow: cn(
+            "bg-gradient-to-r from-primary via-cyan-400 to-primary bg-[length:200%_100%]",
+            "text-primary-foreground font-bold",
+            "shadow-glow hover:shadow-glow-lg",
+            "animate-gradient-x",
+            "border border-primary/30"
+        ),
     };
 
     const sizes = {
-        sm: "h-9 px-4 text-sm",
-        md: "h-12 px-8 text-base",
-        lg: "h-14 px-10 text-lg",
+        sm: "h-9 px-4 text-sm gap-2",
+        md: "h-11 px-6 text-sm gap-2",
+        lg: "h-14 px-8 text-base gap-3",
     };
 
-    const combinedClasses = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+    const combinedClasses = cn(baseStyles, variants[variant], sizes[size], className);
 
     if (href) {
         return (
